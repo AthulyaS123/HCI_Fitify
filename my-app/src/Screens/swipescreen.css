@@ -1,0 +1,63 @@
+
+.container {
+    font-family: 'Urbanist';
+    text-align: center;
+    font-size: 20px;
+    color: #666;
+    font-weight: 600;
+
+}
+
+.swiping-info {
+    min-height: 70vh;
+}
+
+ .pageheader {
+    font-size: 24px;
+    color: #666;
+    font-weight: 650;
+    padding-top: 2rem;
+ }
+
+ .topnav {
+    border-radius: 20px; 
+    background-color: #B1D1B3;
+ }
+
+ .navbar {
+    background-color: #6A9C89;
+ }
+
+ .nav-link, .nav-link-current {
+    text-decoration: none;
+ }
+
+ .nav-link > div {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+ }
+
+ .nav-link-current > div {
+    color: #005C5C;
+    font-size: 12px;
+    font-weight: bold;
+ }
+
+ .topnav > div {
+    border-radius: 20px;
+    padding: 15px;
+ }
+
+
+ .selected {
+    background-color: #6A9C89;
+    border-radius: 20px;
+    padding: 10px;
+ }
+
+ .clothing {
+    border-radius: 20px;
+    border: 1px solid #666;
+ }
+ 

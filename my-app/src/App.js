@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ClosetScreen from "./Screens/closetscreen.js";
+import MixAndMatchScreen from "./Screens/mixandmatchscreen.js";
+import SwipingScreen from "./Screens/swipescreen.js";
+import LandingScreen from "./Screens/landingscreen.js";
+import CreateAccountScreen from "./Screens/createaccountscreen.js";
+import FilterScreen from "./Screens/filterscreen.js";
+import LookbookScreen from "./Screens/lookbookscreen.js";
+import OutfitScreen from "./Screens/outfitscreen.js";
+
+
+
+import { ClothingProvider } from "./Screens/clothingprovider";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ClothingProvider>
+      <Router basename="/HCI_Fitify">
+        <Routes>
+          <Route path="/" element={<SwipingScreen />} />
+          <Route path="/closet" element={<ClosetScreen />} />
+          <Route path="/mix-and-match" element={<MixAndMatchScreen/>} />
+          <Route path="/lookbook" element={<LookbookScreen/>} />
+        </Routes>
+      </Router>
+    </ClothingProvider>
   );
 }
 

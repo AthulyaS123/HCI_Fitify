@@ -1,0 +1,116 @@
+body {
+    margin: 0; line-height: normal;
+    }
+.womensTShirtIcon {
+    position: absolute;
+    top: 202px;
+    left: 68px;
+    width: 40px;
+    height: 25px;
+    object-fit: cover;
+}
+.image17Icon {
+    position: absolute;
+    top: 92px;
+    left: 35px;
+    width: 324px;
+    height: 135px;
+    object-fit: cover;
+}
+.signInScreenChild {
+    position: absolute;
+    top: 596px;
+    left: 127px;
+    border-radius: 20px;
+    background-color: #b1d1b3;
+    width: 135px;
+    height: 49px;
+}
+.signIn {
+    position: absolute;
+    top: 607px;
+    left: 123px;
+    font-size: 21px;
+    font-weight: 600;
+    display: inline-block;
+    width: 139px;
+    height: 22px;
+}
+.newUser {
+    position: absolute;
+    height: 3.52%;
+    width: 35.88%;
+    top: 77.82%;
+    left: 32.32%;
+    font-weight: 600;
+    display: inline-block;
+}
+.signInScreenItem {
+    position: absolute;
+    top: 692.5px;
+    left: 159.5px;
+    border-top: 1px solid #000;
+    box-sizing: border-box;
+    width: 73px;
+    height: 1px;
+}
+.signInScreenInner {
+    position: absolute;
+    top: 428px;
+    left: 58px;
+    border-radius: 20px;
+    background-color: rgba(170, 170, 170, 0.41);
+    width: 276px;
+    height: 49px;
+}
+.rectangleDiv {
+    position: absolute;
+    top: 520px;
+    left: 58px;
+    border-radius: 20px;
+    background-color: rgba(170, 170, 170, 0.41);
+    width: 276px;
+    height: 49px;
+}
+.username {
+    position: absolute;
+    top: 397px;
+    left: 46px;
+    font-weight: 600;
+    display: inline-block;
+    width: 107px;
+    height: 29px;
+}
+.password {
+    position: absolute;
+    top: 492px;
+    left: 43px;
+    font-weight: 600;
+    display: inline-block;
+    width: 107px;
+    height: 29px;
+}
+.welcomeBack {
+    position: absolute;
+    top: 310px;
+    left: 41px;
+    font-size: 32px;
+    letter-spacing: 0.5px;
+    line-height: 16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 310px;
+    height: 69px;
+}
+.signInScreen {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    height: 852px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    font-family: 'Urbanist';
+}
+
