@@ -3,6 +3,7 @@ import * as Clothes from './Clothes';
 
 const ClothingContext = createContext();
 
+
 export const ClothingProvider = ({ children }) => {
   const [clothingItems, setClothingItems] = useState([
     { id: 1, name: "White Floral Babydoll Top", img: Clothes.femtop1, color: "white", occasion: "music-festival", gender: "feminine", aesthetic: "cottagecore", category: "top"},
@@ -34,11 +35,16 @@ export const ClothingProvider = ({ children }) => {
     { id: 25, name: "White Sneakers", img: Clothes.mascshoe1, color: "white", occasion: "music-festival", gender: "masculine", aesthetic: "preppy", category: "shoe"},
     { id: 26, name: "Navy Blue Canvas", img: Clothes.mascshoe2, color: "blue", occasion: "music-festival", gender: "masculine", aesthetic: "casual", category: "shoe"},
     { id: 27, name: "Brown Sneakers", img: Clothes.mascshoe3, color: "brown", occasion: "music-festival", gender: "masculine", aesthetic: "clean", category: "shoe"},
-
+    
 
   ]);
 
   const [likedItems, setLikedItems] = useState([]);
+  const [savedOutfits, setSavedOutfits] = useState([]);
+
+  const saveOutfit = (outfit) => {
+    setSavedOutfits((prevOutfits) => [...prevOutfits, outfit]);
+  };
 
   const likeClothing = (id) => {
     const item = clothingItems.find((item) => item.id === id);
@@ -48,7 +54,7 @@ export const ClothingProvider = ({ children }) => {
   };
 
   return (
-    <ClothingContext.Provider value={{ clothingItems, likedItems, likeClothing }}>
+    <ClothingContext.Provider value={{ clothingItems, likedItems, likeClothing, savedOutfits, saveOutfit }}>
       {children}
     </ClothingContext.Provider>
   );

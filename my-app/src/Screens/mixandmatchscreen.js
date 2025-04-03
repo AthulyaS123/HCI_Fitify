@@ -16,7 +16,7 @@ import './mixandmatchscreen.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MixMatch = () => {
-  const { likedItems } = useClothing();
+  const { likedItems, saveOutfit } = useClothing();
 
   // Filter by category
   const tops = likedItems.filter((item) => item.category === 'top');
@@ -39,6 +39,17 @@ const MixMatch = () => {
     if (type === 'top' && tops.length > 0) setTopIndex((topIndex - 1 + tops.length) % tops.length);
     if (type === 'bottom' && bottoms.length > 0) setbottomIndex((bottomIndex - 1 + bottoms.length) % bottoms.length);
     if (type === 'shoe' && shoes.length > 0) setShoeIndex((shoeIndex - 1 + shoes.length) % shoes.length);
+  };
+
+  const handleSaveOutfit = () => {
+    if (tops.length > 0 && bottoms.length > 0 && shoes.length > 0) {
+      const newOutfit = {
+        top: tops[topIndex],
+        bottom: bottoms[bottomIndex],
+        shoe: shoes[shoeIndex],
+      };
+      saveOutfit(newOutfit);
+    }
   };
 
   return (
@@ -101,7 +112,7 @@ const MixMatch = () => {
       {/* Bottom Nav */}
       <div className="row navbar fixed-bottom">
         <div className="col text-center">
-          <Link to="/" className="nav-link-current">
+          <Link to="/" className="nav-link">
             <img src={hearticon} alt="Swipe" width="40" />
             <div>Swipe</div>
           </Link>
@@ -125,6 +136,15 @@ const MixMatch = () => {
           </Link>
         </div>
       </div>
+
+      <div className='row'>
+        <div className='col'>
+          <button className="save-outfit" onClick={handleSaveOutfit}>
+            Save Outfit
+          </button>
+        </div>
+      </div>
+
     </div>
   );
 };
