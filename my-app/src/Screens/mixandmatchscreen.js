@@ -49,6 +49,7 @@ const MixMatch = () => {
         shoe: shoes[shoeIndex],
       };
       saveOutfit(newOutfit);
+      alert ("Your outfit has been saved!")
     }
   };
 

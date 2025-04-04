@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useClothing } from "./clothingprovider"; // Correct import
 import preficon from "./Icons/preficon.png";
@@ -16,23 +16,30 @@ import questionicon from "./Icons/question.png";
 import "./swipescreen.css";
 
 const SwipingScreen = () => {
-  const { clothingItems, likeClothing } = useClothing();
+  const { clothingItems, likeClothing, skipClothing, skippedItems, likedItems } = useClothing();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedType, setSelectedType] = useState("top"); // Default to "top"
 
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [selectedType, likedItems, skippedItems]);
+
   // Filter items based on selected type
-  const filteredItems = clothingItems.filter((item) => item.category === selectedType);
+  const filteredItems = clothingItems
+    .filter((item) => item.category === selectedType)
+    .filter((item) => 
+      !likedItems.some((liked) => liked.id === item.id) &&
+      !skippedItems.includes(item.id)
+  );
 
   const handleSwipe = (direction) => {
     if (direction === "right") {
-      likeClothing(filteredItems[currentIndex].id);  // Pass only the ID
+      likeClothing(filteredItems[currentIndex].id);
+    } else if (direction === "left") {
+      skipClothing(filteredItems[currentIndex].id);
     }
     setCurrentIndex((prev) => prev + 1);
   };
-
-  if (currentIndex >= filteredItems.length) {
-    return <h2 className="no-more-items">No more items to swipe!</h2>;
-  }
 
   const currentItem = filteredItems[currentIndex];
 
@@ -83,27 +90,53 @@ const SwipingScreen = () => {
 
       {/* Swiping Area */}
       <div className="swiping-info d-flex flex-column justify-content-center">
-        <div className="product-info row">
-          <div className="col-12">
-            <p>{currentItem.name}</p>
-            <p>{currentItem.price}</p>
+        {currentIndex >= filteredItems.length ? (
+          <div className="no-more-items text-center mt-4">
+            <h4>No more items to swipe!</h4>
           </div>
-        </div>
+        ) : (
+          <>
+            <div className="product-info row">
+              <div className="col-12">
+                <p>{currentItem.name}</p>
+                <p>{currentItem.price}</p>
+              </div>
+            </div>
 
-        <div className="row align-items-center">
-          <div className="col-2">
-            <img className="swipe-icon d-block mx-auto" src={swipexicon} alt="Dislike" width="30" onClick={() => handleSwipe("left")} />
-          </div>
+            <div className="row align-items-center">
+              <div className="col-2">
+                <img
+                  className="swipe-icon d-block mx-auto"
+                  src={swipexicon}
+                  alt="Dislike"
+                  width="30"
+                  onClick={() => handleSwipe("left")}
+                />
+              </div>
 
-          <div className="col">
-            <img className="clothing d-block mx-auto" src={currentItem.img} alt={currentItem.name} width="220" />
-          </div>
+              <div className="col">
+                <img
+                  className="clothing d-block mx-auto"
+                  src={currentItem.img}
+                  alt={currentItem.name}
+                  width="220"
+                />
+              </div>
 
-          <div className="col-2">
-            <img className="swipe-icon d-block mx-auto" src={swipehearticon} alt="Like" width="30" onClick={() => handleSwipe("right")} />
-          </div>
-        </div>
+              <div className="col-2">
+                <img
+                  className="swipe-icon d-block mx-auto"
+                  src={swipehearticon}
+                  alt="Like"
+                  width="30"
+                  onClick={() => handleSwipe("right")}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
+
 
       {/* Bottom Navigation */}
       <div className={`row navbar fixed-bottom ${selectedType}-selected`}>
