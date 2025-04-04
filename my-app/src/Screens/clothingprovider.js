@@ -42,6 +42,8 @@ export const ClothingProvider = ({ children }) => {
   const [likedItems, setLikedItems] = useState([]);
   const [savedOutfits, setSavedOutfits] = useState([]);
   const [skippedItems, setSkippedItems] = useState([]);
+  const [deletedItems, setDeletedItems] = useState([]);
+
 
   const saveOutfit = (outfit) => {
     setSavedOutfits((prevOutfits) => [...prevOutfits, outfit]);
@@ -60,8 +62,13 @@ export const ClothingProvider = ({ children }) => {
     }
   };
 
+  const removeLikedItem = (id) => {
+    setLikedItems((prev) => prev.filter((item) => item.id !== id));
+    setDeletedItems((prev) => [...prev, id]);
+  };
+
   return (
-    <ClothingContext.Provider value={{ clothingItems, likedItems, skippedItems, likeClothing, skipClothing, savedOutfits, saveOutfit }}>
+    <ClothingContext.Provider value={{ clothingItems, likedItems, skippedItems, likeClothing, skipClothing, savedOutfits, saveOutfit, removeLikedItem, deletedItems}}>
       {children}
     </ClothingContext.Provider>
   );

@@ -17,6 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MixMatch = () => {
   const { likedItems, saveOutfit } = useClothing();
+  const [saved, setSaved] = useState(false);
 
   // Filter by category
   const tops = likedItems.filter((item) => item.category === 'top');
@@ -30,12 +31,14 @@ const MixMatch = () => {
 
   // Handlers
   const handleNext = (type) => {
+    setSaved(false);
     if (type === 'top' && tops.length > 0) setTopIndex((topIndex + 1) % tops.length);
     if (type === 'bottom' && bottoms.length > 0) setbottomIndex((bottomIndex + 1) % bottoms.length);
     if (type === 'shoe' && shoes.length > 0) setShoeIndex((shoeIndex + 1) % shoes.length);
   };
 
   const handlePrev = (type) => {
+    setSaved(false);
     if (type === 'top' && tops.length > 0) setTopIndex((topIndex - 1 + tops.length) % tops.length);
     if (type === 'bottom' && bottoms.length > 0) setbottomIndex((bottomIndex - 1 + bottoms.length) % bottoms.length);
     if (type === 'shoe' && shoes.length > 0) setShoeIndex((shoeIndex - 1 + shoes.length) % shoes.length);
@@ -49,7 +52,7 @@ const MixMatch = () => {
         shoe: shoes[shoeIndex],
       };
       saveOutfit(newOutfit);
-      alert ("Your outfit has been saved!")
+      setSaved(true);
     }
   };
 
@@ -138,13 +141,10 @@ const MixMatch = () => {
         </div>
       </div>
 
-      <div className='row'>
-        <div className='col'>
-          <button className="save-outfit" onClick={handleSaveOutfit}>
-            Save Outfit
-          </button>
-        </div>
-      </div>
+      <button 
+        className={`save-outfit ${saved ? "saved" : ""}`} onClick={handleSaveOutfit}>
+        {saved ? "Outfit Saved!" : "Save Outfit"}
+      </button>
 
     </div>
   );

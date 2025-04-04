@@ -16,7 +16,7 @@ import questionicon from "./Icons/question.png";
 import "./swipescreen.css";
 
 const SwipingScreen = () => {
-  const { clothingItems, likeClothing, skipClothing, skippedItems, likedItems } = useClothing();
+  const { clothingItems, likeClothing, skipClothing, skippedItems, likedItems, deletedItems } = useClothing();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedType, setSelectedType] = useState("top"); // Default to "top"
 
@@ -29,7 +29,7 @@ const SwipingScreen = () => {
     .filter((item) => item.category === selectedType)
     .filter((item) => 
       !likedItems.some((liked) => liked.id === item.id) &&
-      !skippedItems.includes(item.id)
+      !skippedItems.includes(item.id) && !deletedItems.includes(item.id)
   );
 
   const handleSwipe = (direction) => {

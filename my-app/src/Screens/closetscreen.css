@@ -34,9 +34,14 @@
     font-weight: bold;
  }
 
+
  .topnav > div {
     border-radius: 20px;
     padding: 15px;
+ }
+
+ .liked-items {
+   margin-top: 50px;
  }
 
  .selected {
@@ -44,3 +49,15 @@
     border-radius: 20px;
     padding: 10px;
  }
+
+ .trashcan {
+   position: fixed;
+   transform: translateX(-100%);
+   bottom: 100px;
+ }
+
+ .selected-glow {
+   box-shadow: 0 0 2px 5px #6A9C89;
+   transition: box-shadow 0.2s ease;
+ }
+ 
