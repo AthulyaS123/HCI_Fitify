@@ -1,0 +1,113 @@
+.container {
+    font-family: 'Urbanist';
+    text-align: center;
+    font-size: 20px;
+    color: #666;
+    font-weight: 600;
+
+}
+
+.header-text {
+    font-size: 35px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.desc-text {
+    padding: 10px;
+    margin:10px;
+    font-size: 23px;
+    padding-bottom: 40px;
+}
+
+.back-arrow {
+    padding: 10px;
+}
+
+.save-button {
+    background-color: #B1D1B3;
+    border-radius: 40px;
+    border-style: hidden;
+    width: 80px;
+    height: 40px;
+}
+
+.multi-select-container {
+    font-family: 'Urbanist';
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+  }
+  
+  .multi-select-label {
+    font-family: 'Urbanist';
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+  }
+  
+  .selected-box {
+    font-family: 'Urbanist';
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: white; 
+    padding: 8px;
+    min-height: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .tag {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tag button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+  
+  
+  .dropdown-list {
+    font-family: 'Urbanist';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    margin-top: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  .dropdown-item {
+    font-family: 'Urbanist';
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown-item.disabled {
+    color: #999;
+    cursor: default;
+  }
