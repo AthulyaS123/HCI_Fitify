@@ -8,7 +8,7 @@ import CreateAccountScreen from "./Screens/createaccountscreen.js";
 import FilterScreen from "./Screens/filterscreen.js";
 import LookbookScreen from "./Screens/lookbookscreen.js";
 import OutfitScreen from "./Screens/outfitscreen.js";
-
+// import PreferenceScreen from "./Screens/preferencescreen.js";
 
 
 import { ClothingProvider } from "./Screens/clothingprovider";
@@ -18,7 +18,8 @@ function App() {
     <ClothingProvider>
       <Router basename="/HCI_Fitify">
         <Routes>
-          <Route path="/" element={<SwipingScreen />} />
+          <Route path="/" element={<FilterScreen />} />
+          <Route path="/swipe" element={<SwipingScreen />} />
           <Route path="/closet" element={<ClosetScreen />} />
           <Route path="/mix-and-match" element={<MixAndMatchScreen/>} />
           <Route path="/lookbook" element={<LookbookScreen/>} />

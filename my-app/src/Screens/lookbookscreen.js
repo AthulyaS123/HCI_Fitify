@@ -62,7 +62,7 @@ const Lookbook = () => {
       {/* Bottom Navigation */}
       <div className="row navbar fixed-bottom">
         <div className="col text-center">
-          <Link to="/" className="nav-link">
+          <Link to="/swipe" className="nav-link">
             <img src={hearticon} alt="Swipe" width="40" />
             <div>Swipe</div>
           </Link>
