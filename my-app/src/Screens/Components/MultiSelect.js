@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../filterscreen.css';
 
-const MultiSelect = ({ label, options }) => {
+const MultiSelect = ({ label, options, onChange }) => {
   const [selected, setSelected] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -9,11 +9,15 @@ const MultiSelect = ({ label, options }) => {
   const availableOptions = options.filter(opt => !selected.includes(opt));
 
   const handleSelect = (option) => {
-    setSelected([...selected, option]);
+    const updated = [...selected, option];
+    setSelected(updated);
+    if (onChange) onChange(updated);
   };
 
   const handleRemove = (option) => {
-    setSelected(selected.filter(item => item !== option));
+    const updated = selected.filter(item => item !== option);
+    setSelected(updated);
+    if (onChange) onChange(updated);
   };
 
   // closes dropdown if user clicks anywhere outside of the dropdown box

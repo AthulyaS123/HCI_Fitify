@@ -38,13 +38,13 @@ export const ClothingProvider = ({ children }) => {
 
     // NEWLY ADDED CLOTHES
     { id: 28, name: "Mermaid Top", img: Clothes.femtop4, color: "multi", occasion: "music-festival", gender: "feminine", aesthetic: "cottagecore", category: "top"},
-    { id: 29, name: "Dark Blue Button Up", img: Clothes.masctop4, color: "blue", occasion: "music-festival", gender: "masculine", aesthetic: "preppy",  category: "bottom"},
-    { id: 30, name: "Basic Top", img: Clothes.unitop4, color: "grey", occasion: "music-festival", gender: "unisex", aesthetic: "clean", category: "shoe"},
-    { id: 31, name: "White Pants", img: Clothes.fembottom4, color: "white", occasion: "music-festival", gender: "feminine", aesthetic: "casual", category: "top"},
+    { id: 29, name: "Dark Blue Button Up", img: Clothes.masctop4, color: "blue", occasion: "music-festival", gender: "masculine", aesthetic: "preppy",  category: "top"},
+    { id: 30, name: "Basic Top", img: Clothes.unitop4, color: "grey", occasion: "music-festival", gender: "unisex", aesthetic: "clean", category: "top"},
+    { id: 31, name: "White Pants", img: Clothes.fembottom4, color: "white", occasion: "music-festival", gender: "feminine", aesthetic: "casual", category: "bottom"},
     { id: 32, name: "White Slacks", img: Clothes.mascbottom4, color: "white", occasion: "music-festival", gender: "masculine", aesthetic: "streetwear", category: "bottom"},
-    { id: 33, name: "White Drawstring Pants", img: Clothes.unibottom4, color: "white", occasion: "music-festival", gender: "unisex", aesthetic: "casual", category: "shoe"},
-    { id: 34, name: "White Converse Heels", img: Clothes.femshoe4, color: "white", occasion: "music-festival", gender: "feminine", aesthetic: "preppy", category: "top"},
-    { id: 35, name: "Red Leather Sneakers", img: Clothes.mascshoe4, color: "red", occasion: "music-festival", gender: "masculine", aesthetic: "casual", category: "bottom"},
+    { id: 33, name: "White Drawstring Pants", img: Clothes.unibottom4, color: "white", occasion: "music-festival", gender: "unisex", aesthetic: "casual", category: "bottom"},
+    { id: 34, name: "White Converse Heels", img: Clothes.femshoe4, color: "white", occasion: "music-festival", gender: "feminine", aesthetic: "preppy", category: "shoe"},
+    { id: 35, name: "Red Leather Sneakers", img: Clothes.mascshoe4, color: "red", occasion: "music-festival", gender: "masculine", aesthetic: "casual", category: "shoe"},
     { id: 36, name: "Black Leather Boots", img: Clothes.unishoe4, color: "black", occasion: "music-festival", gender: "unisex", aesthetic: "clean", category: "shoe"},
 
     { id: 37, name: "Ruffled Pink Tank Top", img: Clothes.femtop5, color: "pink", occasion: "music-festival", gender: "feminine", aesthetic: "cottagecore", category: "top"},
@@ -57,8 +57,6 @@ export const ClothingProvider = ({ children }) => {
     { id: 44, name: "White Sandals", img: Clothes.mascshoe5, color: "white", occasion: "music-festival", gender: "masculine", aesthetic: "casual", category: "shoe"},
     { id: 45, name: "Brown Slides", img: Clothes.unishoe5, color: "brown", occasion: "music-festival", gender: "unisex", aesthetic: "clean", category: "shoe"},
 
-    
-    
     { id: 46, name: "Black Tank Top", img: Clothes.femtop6, color: "black", occasion: "music-festival", gender: "feminine", aesthetic: "clean", category: "top"},
     { id: 47, name: "Blue Star Jeans", img: Clothes.fembottom6, color: "blue", occasion: "music-festival", gender: "feminine", aesthetic: "streetwear", category: "bottom"},
     { id: 48, name: "Black Sandals", img: Clothes.femshoe6, color: "black", occasion: "music-festival", gender: "feminine", aesthetic: "casual", category: "shoe"},
@@ -70,6 +68,14 @@ export const ClothingProvider = ({ children }) => {
     { id: 54, name: "Green Converse", img: Clothes.unishoe6, color: "green", occasion: "music-festival", gender: "unisex", aesthetic: "casual", category: "shoe"},
     
   ]);
+
+  // Storing user prefereces:
+  const [preferences, setPreferences] = useState({
+    gender: [],
+    color: [],
+    aesthetic: [],
+    occasion: ""
+  });
 
   const [likedItems, setLikedItems] = useState([]);
   const [savedOutfits, setSavedOutfits] = useState([]);
@@ -100,7 +106,9 @@ export const ClothingProvider = ({ children }) => {
   };
 
   return (
-    <ClothingContext.Provider value={{ clothingItems, likedItems, skippedItems, likeClothing, skipClothing, savedOutfits, saveOutfit, removeLikedItem, deletedItems}}>
+    <ClothingContext.Provider value={{ clothingItems, likedItems, skippedItems, 
+      likeClothing, skipClothing, savedOutfits, saveOutfit, removeLikedItem, deletedItems,
+      preferences, setPreferences}}>
       {children}
     </ClothingContext.Provider>
   );

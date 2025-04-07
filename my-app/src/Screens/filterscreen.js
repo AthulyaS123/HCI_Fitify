@@ -11,6 +11,23 @@ import './filterscreen.css';
 
 const FilterScreen = () => {
 	const navigate = useNavigate();
+	const { setPreferences } = useClothing();	
+
+	const [gender, setGender] = useState([]);
+	const [color, setColor] = useState([]);
+	const [aesthetic, setAesthetic] = useState([]);
+	const [occasion, setOccasion] = useState("");
+
+	const handleSave = () => {
+		// Save preferences to context
+		setPreferences({
+		  gender,
+		  color,
+		  aesthetic,
+		  occasion,
+		});
+		navigate("/swipe");
+	  };
 
   	return (
     		<div className="container">
@@ -28,26 +45,33 @@ const FilterScreen = () => {
 				</div>
 
 				{/* Dropdown Area */}
-				{/* multi-select dropdowns: gender, color, aesthetic*/}
-				{/* single-select dropdown: occasion*/}
 				<div className="row">
 					<MultiSelect 
 						label="Gender"
-						options={["Feminine", "Masculine", "Unisex"]}/>
+						options={["feminine", "masculine", "unisex"]}
+						onChange={setGender}/>
 
 				</div>
 				<div className="row">
 					<MultiSelect
 					label="Color"
-					options={['Red', 'Blue', 'Green', 'Neutral', 'Pastel']}/>
+					options={['white', 'black', 'blue', 'brown', 'beige', 'green', 'grey', 'red', 'pink', 'multi']}
+					onChange={setColor}/>
 				</div>
 				<div className="row">
 					<MultiSelect
 						label="Aesthetic"
-						options={['Y2K', 'Goth', 'Cottagecore', 'Grunge', 'Streetwear']}/>
+						options={['casual', 'streetwear', 'cottagecore', 'western', 'coquette', 'preppy', 'clean']}
+						onChange={setAesthetic}/>
+				</div>
+				<div className="row">
+					<MultiSelect
+						label="Occasion"
+						options={['music-festival', 'tropical-vacation', 'corporate-job', 'everyday']}
+						onChange={setOccasion}/>
 				</div>
 				
-				<button className="save-button" onClick={() => navigate("/swipe")}>Save</button>
+				<button className="save-button" onClick={handleSave}>Save</button>
 
       			
     		</div>);

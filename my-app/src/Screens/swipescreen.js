@@ -16,21 +16,33 @@ import questionicon from "./Icons/question.png";
 import "./swipescreen.css";
 
 const SwipingScreen = () => {
-  const { clothingItems, likeClothing, skipClothing, skippedItems, likedItems, deletedItems } = useClothing();
+  const { clothingItems, likeClothing, skipClothing, skippedItems, likedItems, deletedItems, preferences } = useClothing();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedType, setSelectedType] = useState("top"); // Default to "top"
+  
 
   useEffect(() => {
     setCurrentIndex(0);
   }, [selectedType, likedItems, skippedItems]);
 
+  // Filter items based on user preferences
+  const filterByPreferences = (item) => {
+    const matchGender = preferences.gender.length === 0 || preferences.gender.includes(item.gender);
+    const matchColor = preferences.color.length === 0 || preferences.color.includes(item.color);
+    const matchAesthetic = preferences.aesthetic.length === 0 || preferences.aesthetic.includes(item.aesthetic);
+    return matchGender && matchColor && matchAesthetic;
+  };
+
   // Filter items based on selected type
   const filteredItems = clothingItems
     .filter((item) => item.category === selectedType)
+    .filter(filterByPreferences)
     .filter((item) => 
       !likedItems.some((liked) => liked.id === item.id) &&
-      !skippedItems.includes(item.id) && !deletedItems.includes(item.id)
+      !skippedItems.includes(item.id) && 
+      !deletedItems.includes(item.id)
   );
+
 
   const handleSwipe = (direction) => {
     if (direction === "right") {
