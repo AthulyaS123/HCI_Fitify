@@ -7,7 +7,6 @@ import LandingScreen from "./Screens/landingscreen.js";
 import CreateAccountScreen from "./Screens/createaccountscreen.js";
 import FilterScreen from "./Screens/filterscreen.js";
 import LookbookScreen from "./Screens/lookbookscreen.js";
-import OutfitScreen from "./Screens/outfitscreen.js";
 // import PreferenceScreen from "./Screens/preferencescreen.js";
 
 
