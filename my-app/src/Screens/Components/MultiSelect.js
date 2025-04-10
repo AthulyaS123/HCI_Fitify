@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../filterscreen.css';
 
-const MultiSelect = ({ label, options, onChange }) => {
+const MultiSelect = ({ label, options, onChange, selected: externalSelected = [] }) => {
   const [selected, setSelected] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  // syncs internal state with the externally selected user preferences
+  useEffect(() => {
+    setSelected(externalSelected);
+  }, [externalSelected.join(',')]);
 
   const availableOptions = options.filter(opt => !selected.includes(opt));
 

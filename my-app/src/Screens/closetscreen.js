@@ -14,6 +14,8 @@ import hearticon from "./Icons/whiteheart.png";
 import closeticon from "./Icons/bluewardrobe.png";
 import mixandmatchicon from "./Icons/mixandmatchicon.png";
 import fitsicon from "./Icons/fitsicon.png";
+import nextarrowicon from "./Icons/nextarrowicon.png";
+import previousarrowicon from "./Icons/previousarrowicon.png";
 
 function ClosetScreen() {
   const { likedItems, removeLikedItem } = useClothing();
@@ -38,7 +40,9 @@ function ClosetScreen() {
       {/* Header */}
       <div className="top-content row align-items-center">
         <div className="col-1">
-          <img className="d-block mx-auto" src={preficon} alt="Preferences" width="30" />
+          <Link to="/">
+            <img className="d-block mx-auto" src={preficon} alt="Go to preferences screen" width="30" />
+          </Link>
         </div>
         <div className="col-1">
           <img className="d-block mx-auto" src={questionicon} alt="Info" width="30" />
@@ -48,6 +52,22 @@ function ClosetScreen() {
         </div>
         <div className="col-2">
           <img className="d-block mx-auto" src={usericon} alt="Profile" width="40" />
+        </div>
+      </div>
+
+      {/* prev and next screen arrows */}
+      <div className="top-content row align-items-center next-arrows">
+        <div className="col-1">
+          <Link to="/swipe" className="nav-link"> 
+            <img className="d-block mx-auto" src={previousarrowicon} alt="Go to previous screen" width="27" />
+          </Link>
+        </div>
+        <div className="col-1"></div>
+        <div className="col-8"></div>
+        <div className="col-2">
+          <Link to="/mix-and-match" className="nav-link"> 
+            <img className="d-block mx-auto" src={nextarrowicon} alt="Go to next screen" width="30"/>
+          </Link>
         </div>
       </div>
 
