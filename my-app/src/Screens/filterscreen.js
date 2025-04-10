@@ -30,51 +30,44 @@ const FilterScreen = () => {
 	  };
 
   	return (
-    		<div className="container">
-				<div className="row">
-					<div className="col-1">
+		<div className="container">
+			<div className="row">
+				<div className="col-1">
+					<Link to="/swipe">
 						<img className="back-arrow" src={backarrowicon}/>
-					</div>
+					</Link>
 				</div>
+			</div>
 
-				<div className="row">
-					<div className="header-text">Welcome!</div>
-				</div>
-				<div className="row">
-					<div className="desc-text">Tell Us Your Style</div>
-				</div>
+			<div className="row">
+				<div className="header-text">Welcome!</div>
+			</div>
+			<div className="row">
+				<div className="desc-text">Tell Us Your Style</div>
+			</div>
 
-				{/* Dropdown Area */}
-				<div className="row">
-					<MultiSelect 
-						label="Gender"
-						options={["feminine", "masculine", "unisex"]}
-						onChange={setGender}/>
+			{/* Dropdown Area */}
+			<div className="row">
+				<MultiSelect 
+					label="Gender"
+					options={["feminine", "masculine", "unisex"]}
+					onChange={setGender}/>
+			</div>
+			<div className="row">
+				<MultiSelect
+				label="Color"
+				options={['black','white','brown','blue','green','grey','beige',,'red','orange','yellow','pink','purple','multi']}
+				onChange={setColor}/>
+			</div>
+			<div className="row">
+				<MultiSelect
+					label="Style"
+					options={['casual/comfy', 'streetwear', 'business/professional', 'formal/elegant', 'going-out/cute']}
+					onChange={setAesthetic}/>
+			</div>
 
-				</div>
-				<div className="row">
-					<MultiSelect
-					label="Color"
-					options={['white', 'black', 'blue', 'brown', 'beige', 'green', 'grey', 'red', 'pink', 'multi']}
-					onChange={setColor}/>
-				</div>
-				<div className="row">
-					<MultiSelect
-						label="Aesthetic"
-						options={['casual', 'streetwear', 'cottagecore', 'western', 'coquette', 'preppy', 'clean']}
-						onChange={setAesthetic}/>
-				</div>
-				<div className="row">
-					<MultiSelect
-						label="Occasion"
-						options={['music-festival', 'tropical-vacation', 'corporate-job', 'everyday']}
-						onChange={setOccasion}/>
-				</div>
-				
-				<button className="save-button" onClick={handleSave}>Save</button>
-
-      			
-    		</div>);
+			<button className="save-button" onClick={handleSave}>Save</button>
+		</div>);
 };
 
 export default FilterScreen;

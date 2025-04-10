@@ -11,6 +11,8 @@ import mixandmatchicon from './Icons/mixandmatchicon.png';
 import closeticon from './Icons/closeticon.png';
 import usericon from './Icons/user.png';
 import questionicon from './Icons/question.png';
+import nextarrowicon from "./Icons/nextarrowicon.png";
+import previousarrowicon from "./Icons/previousarrowicon.png";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './lookbookscreen.css';
@@ -36,7 +38,9 @@ const Lookbook = () => {
       {/* Header */}
       <div className="top-content row align-items-center">
         <div className="col-1">
-          <img className="d-block mx-auto" src={preficon} alt="Preferences" width="30" />
+          <Link to="/">
+            <img className="d-block mx-auto" src={preficon} alt="Go to preferences screen" width="30" />
+          </Link>
         </div>
         <div className="col-1">
           <img className="d-block mx-auto" src={questionicon} alt="Info" width="30" />
@@ -47,6 +51,16 @@ const Lookbook = () => {
         <div className="col-2">
           <img className="d-block mx-auto" src={usericon} alt="Profile" width="40" />
         </div>
+      </div>
+
+      {/* prev and next screen arrows */}
+      <div className="top-content row align-items-center next-arrows">
+        <div className="col-1">
+          <Link to="/mix-and-match" className="nav-link"> 
+            <img className="d-block mx-auto" src={previousarrowicon} alt="Go to previous screen" width="27" />
+          </Link>
+        </div>
+        
       </div>
 
       {/* Saved Outfits */}
