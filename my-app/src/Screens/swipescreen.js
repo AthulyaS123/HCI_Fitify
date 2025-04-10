@@ -36,7 +36,7 @@ const SwipingScreen = () => {
 
     const matchColor =
       preferences.color.length === 0 ||
-      preferences.color.includes(item.color);
+      preferences.color.some((pref) => item.color.includes(pref));
 
     const matchAesthetic =
       preferences.aesthetic.length === 0 ||
