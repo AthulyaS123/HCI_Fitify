@@ -83,9 +83,40 @@ export const ClothingProvider = ({ children }) => {
   const [deletedItems, setDeletedItems] = useState([]);
 
 
-  const saveOutfit = (outfit) => {
-    setSavedOutfits((prevOutfits) => [...prevOutfits, outfit]);
+  // const saveOutfit = (outfit) => {
+  //   setSavedOutfits((prevOutfits) => [...prevOutfits, outfit]);
+  // };
+
+  const getBrandAndTitle = (name) => {
+    const words = name.split(" ");
+    const brand = words[0];
+    const title = words.slice(1).join(" ");
+    return { brand, title };
   };
+  
+  const saveOutfit = (outfit) => {
+    const top = {
+      img: outfit.top.img,
+      name: outfit.top.name,
+      ...getBrandAndTitle(outfit.top.name)
+    };
+  
+    const bottom = {
+      img: outfit.bottom.img,
+      name: outfit.bottom.name,
+      ...getBrandAndTitle(outfit.bottom.name)
+    };
+  
+    const shoe = {
+      img: outfit.shoe.img,
+      name: outfit.shoe.name,
+      ...getBrandAndTitle(outfit.shoe.name)
+    };
+  
+    const outfitWithMeta = { top, bottom, shoe };
+    setSavedOutfits((prev) => [...prev, outfitWithMeta]);
+  };
+  
 
   const likeClothing = (id) => {
     const item = clothingItems.find((item) => item.id === id);

@@ -101,34 +101,40 @@ const Lookbook = () => {
                   <div className="col-8">
                     <p className="fw-semibold mb-1">Tops:</p>
                     <ul className="ps-3 mb-0">
-                      <li><a href="#" className="text-decoration-underline">PacSun Sheer Tank Top</a></li>
-                      <li><a href="#" className="text-decoration-underline">Urban Outfitters Camisole</a></li>
-                      <li><a href="#" className="text-decoration-underline">Aerie Lace Trim Top</a></li>
-                      <li><a href="#" className="text-decoration-underline">Brandy Melville Tank Top</a></li>
+                      {["PacSun", "Urban Outfitters", "Aerie", "Macys"].map((brand) => (
+                        <li key={brand}>
+                          <a href="#" className="text-decoration-underline">
+                            {brand} {selectedOutfit.top.title}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
 
                 {/* Bottoms */}
-                <div className="row mb-4 align-items-start">
-                  <div className="col-4 text-center">
-                    <img
-                      src={selectedOutfit.bottom.img}
-                      alt="Bottom"
-                      className="img-fluid"
-                      style={{ maxHeight: '150px', objectFit: 'contain' }}
-                    />
-                  </div>
-                  <div className="col-8">
-                    <p className="fw-semibold mb-1">Bottoms:</p>
-                    <ul className="ps-3 mb-0">
-                      <li><a href="#" className="text-decoration-underline">American Eagle Wide Leg Jeans</a></li>
-                      <li><a href="#" className="text-decoration-underline">PacSun 90s Boyfriend Jeans</a></li>
-                      <li><a href="#" className="text-decoration-underline">Levi’s Blue Baggy Jeans</a></li>
-                      <li><a href="#" className="text-decoration-underline">Pacsun High Rise Flare Jeans</a></li>
-                    </ul>
-                  </div>
+              <div className="row mb-4 align-items-start">
+                <div className="col-4 text-center">
+                  <img
+                    src={selectedOutfit.bottom.img}
+                    alt="Bottom"
+                    className="img-fluid"
+                    style={{ maxHeight: '150px', objectFit: 'contain' }}
+                  />
                 </div>
+                <div className="col-8">
+                  <p className="fw-semibold mb-1">Bottoms:</p>
+                  <ul className="ps-3 mb-0">
+                    {["American Eagle", "PacSun", "Levi’s"].map((brand) => (
+                      <li key={brand}>
+                        <a href="#" className="text-decoration-underline">
+                          {brand} {selectedOutfit.bottom.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
 
                 {/* Shoes */}
                 <div className="row mb-2 align-items-start">
@@ -143,9 +149,13 @@ const Lookbook = () => {
                   <div className="col-8">
                     <p className="fw-semibold mb-1">Shoes:</p>
                     <ul className="ps-3 mb-0">
-                      <li><a href="#" className="text-decoration-underline">New Balance Sneakers</a></li>
-                      <li><a href="#" className="text-decoration-underline">Adidas Samba Sneakers</a></li>
-                      <li><a href="#" className="text-decoration-underline">Reebok Casual Shoes</a></li>
+                      {["New Balance", "Adidas", "Nike"].map((brand) => (
+                        <li key={brand}>
+                          <a href="#" className="text-decoration-underline">
+                            {brand} {selectedOutfit.shoe.title}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
