@@ -11,23 +11,32 @@ import './filterscreen.css';
 
 const FilterScreen = () => {
 	const navigate = useNavigate();
-	const { setPreferences } = useClothing();	
+	const { preferences, setPreferences } = useClothing();	
 
-	const [gender, setGender] = useState([]);
-	const [color, setColor] = useState([]);
-	const [aesthetic, setAesthetic] = useState([]);
-	const [occasion, setOccasion] = useState("");
+	const [gender, setGender] = useState(preferences.gender || []);
+	const [color, setColor] = useState(preferences.color || []);
+	const [aesthetic, setAesthetic] = useState(preferences.aesthetic || []);
 
 	const handleSave = () => {
 		// Save preferences to context
 		setPreferences({
 		  gender,
 		  color,
-		  aesthetic,
-		  occasion,
+		  aesthetic
 		});
 		navigate("/swipe");
 	  };
+
+	const handleReset = () => {
+		setGender([]);
+		setColor([]);
+		setAesthetic([]);
+		setPreferences({
+			gender: [],
+			color: [],
+			aesthetic: []
+		});
+	};
 
   	return (
 		<div className="container">
@@ -51,22 +60,31 @@ const FilterScreen = () => {
 				<MultiSelect 
 					label="Gender"
 					options={["feminine", "masculine", "unisex"]}
-					onChange={setGender}/>
+					onChange={setGender}
+					selected={gender}/>
+					
 			</div>
 			<div className="row">
 				<MultiSelect
 				label="Color"
 				options={['black','white','brown','blue','green','grey','beige',,'red','orange','yellow','pink','purple','multi']}
-				onChange={setColor}/>
+				onChange={setColor}
+				selected={color}/>
+				
 			</div>
 			<div className="row">
 				<MultiSelect
 					label="Style"
 					options={['casual/comfy', 'streetwear', 'business/professional', 'formal/elegant', 'going-out/cute']}
-					onChange={setAesthetic}/>
+					onChange={setAesthetic}
+					selected={aesthetic}/>
 			</div>
-
-			<button className="save-button" onClick={handleSave}>Save</button>
+			
+			<div className="col">
+				<button className="save-button" onClick={handleSave}>Save</button>
+			</div>
+			<button className="reset-button" onClick={handleReset}>Reset</button>
+			
 		</div>);
 };
 
