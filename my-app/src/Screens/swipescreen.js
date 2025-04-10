@@ -30,9 +30,18 @@ const SwipingScreen = () => {
 
   // Filter items based on user preferences
   const filterByPreferences = (item) => {
-    const matchGender = preferences.gender.length === 0 || preferences.gender.includes(item.gender);
-    const matchColor = preferences.color.length === 0 || preferences.color.includes(item.color);
-    const matchAesthetic = preferences.aesthetic.length === 0 || preferences.aesthetic.includes(item.aesthetic);
+    const matchGender =
+      preferences.gender.length === 0 ||
+      preferences.gender.some((pref) => item.gender.includes(pref));
+
+    const matchColor =
+      preferences.color.length === 0 ||
+      preferences.color.includes(item.color);
+
+    const matchAesthetic =
+      preferences.aesthetic.length === 0 ||
+      preferences.aesthetic.some((pref) => item.aesthetic.includes(pref));
+
     return matchGender && matchColor && matchAesthetic;
   };
 
