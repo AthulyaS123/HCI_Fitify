@@ -102,7 +102,7 @@ function ClosetScreen() {
                     src={item.img}
                     alt={item.name}
                     className="img-fluid rounded"
-                    style={{ objectFit: "cover", height: "100%" }}
+                    style={{ objectFit: "contain", height: "100%" }}
                   />
                 </div>
               </div>
