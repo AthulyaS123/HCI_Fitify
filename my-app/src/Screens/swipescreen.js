@@ -22,12 +22,19 @@ const SwipingScreen = () => {
   const { clothingItems, likeClothing, skipClothing, skippedItems, likedItems, deletedItems, preferences } = useClothing();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedType, setSelectedType] = useState("top"); // Default to "top"
-  
+  // Swipe state:
+  const [startX, setStartX] = useState(null);
+  const [offsetX, setOffsetX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState(null);
+  const [justSwiped, setJustSwiped] = useState(false);
+
+  const threshold = 75;
 
   useEffect(() => {
     setCurrentIndex(0);
   }, [selectedType, likedItems, skippedItems]);
-
+ 
   // Filter items based on user preferences
   const filterByPreferences = (item) => {
     const matchGender =
@@ -55,17 +62,55 @@ const SwipingScreen = () => {
       !deletedItems.includes(item.id)
   );
 
+  const currentItem = filteredItems[currentIndex];
 
-  const handleSwipe = (direction) => {
-    if (direction === "right") {
-      likeClothing(filteredItems[currentIndex].id);
-    } else if (direction === "left") {
-      skipClothing(filteredItems[currentIndex].id);
+  // Handle dragging/swiping
+  const onDragStart = (clientX, pointerId, el) => {
+    setStartX(clientX);
+    setIsDragging(true);
+    el.setPointerCapture(pointerId);
+  };
+  const onDragMove = (clientX) => {
+    if (isDragging && startX !== null) {
+      setOffsetX(clientX - startX);
     }
-    setCurrentIndex((prev) => prev + 1);
+  };
+  const cleanupDrag = (pointerId, el) => {
+    setIsDragging(false);
+    setStartX(null);
+    el.releasePointerCapture(pointerId);
   };
 
-  const currentItem = filteredItems[currentIndex];
+  const triggerSwipe = (direction) => {
+    setSwipeDirection(direction);
+    setJustSwiped(true);
+  
+    setTimeout(() => {
+      if (direction === "right") likeClothing(currentItem.id);
+      else                       skipClothing(currentItem.id);
+  
+      setSwipeDirection(null);
+      setOffsetX(0);
+      setCurrentIndex(i => i + 1);
+  
+      setTimeout(() => {
+        setJustSwiped(false);
+      }, 50);  
+    }, 300);   
+  };
+
+  const onDragEnd = (clientX, pointerId, el) => {
+    if (!isDragging || startX === null) {
+      cleanupDrag(pointerId, el);
+      return;
+    }
+    const dist = clientX - startX;
+    if (dist > threshold) triggerSwipe("right");
+    else if (dist < -threshold) triggerSwipe("left");
+    else setOffsetX(0);
+
+    cleanupDrag(pointerId, el);
+  };
 
   return (
     <div className="container">
@@ -152,7 +197,7 @@ const SwipingScreen = () => {
                   src={swipexicon}
                   alt="Dislike"
                   width="30"
-                  onClick={() => handleSwipe("left")}
+                  onClick={() => triggerSwipe("left")}
                 />
               </div>
 
@@ -162,6 +207,37 @@ const SwipingScreen = () => {
                   src={currentItem.img}
                   alt={currentItem.name}
                   width="220"
+                  
+                  draggable={false}
+                  onPointerDown={(e) =>
+                    onDragStart(e.clientX, e.pointerId, e.currentTarget)
+                  }
+                  onPointerMove={(e) => {
+                    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+                      onDragMove(e.clientX);
+                    }
+                  }}
+                  onPointerUp={(e) =>
+                    onDragEnd(e.clientX, e.pointerId, e.currentTarget)
+                  }
+                  style={{
+                    touchAction: "none", 
+                    cursor: isDragging ? "grabbing" : "grab",
+                    transform: swipeDirection
+                      ? swipeDirection === "left"
+                        ? "translateX(-100vw)"
+                        : "translateX(100vw)"
+                      : `translateX(${offsetX}px)`,
+                    transition: swipeDirection
+                      ? "transform 0.3s ease-out"
+                      : isDragging
+                      ? "none"
+                      : justSwiped
+                      ? "none"
+                      : "transform 0.3s ease",
+                      opacity: justSwiped && !swipeDirection ? 0 : 1,
+                      visibility: justSwiped && !swipeDirection ? "hidden" : "visible"
+                  }} 
                 />
               </div>
 
@@ -171,7 +247,7 @@ const SwipingScreen = () => {
                   src={swipehearticon}
                   alt="Like"
                   width="30"
-                  onClick={() => handleSwipe("right")}
+                  onClick={() => triggerSwipe("right")}
                 />
               </div>
             </div>
