@@ -22,6 +22,8 @@ const Lookbook = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [selectedOutfit, setSelectedOutfit] = useState(null);
+  const [showInfoPopup, setShowInfoPopup] = useState(false);
+
 
   const handleShowModal = (outfit) => {
     setSelectedOutfit(outfit);
@@ -43,8 +45,16 @@ const Lookbook = () => {
           </Link>
         </div>
         <div className="col-1">
-          <img className="d-block mx-auto" src={questionicon} alt="Info" width="30" />
+          <img
+            className="d-block mx-auto"
+            src={questionicon}
+            alt="Info button"
+            width="30"
+            style={{ cursor: "pointer" }}
+            onClick={() => setShowInfoPopup(true)}
+          />
         </div>
+
         <div className="col-8">
           <p className="pageheader">Lookbook</p>
         </div>
@@ -197,6 +207,19 @@ const Lookbook = () => {
           </Link>
         </div>
       </div>
+      {showInfoPopup && (
+      <div className="info-popup-overlay" onClick={() => setShowInfoPopup(false)}>
+        <div className="info-popup" onClick={(e) => e.stopPropagation()}>
+          <h5>How to access Lookbook</h5>
+          <p>👕 Your saved outfits are all stored in the lookbook </p>
+          <p>👖 Press on the outfit to see links of where to buy these outfits </p>
+          <p>👟 Fitify: Swipe + Style </p>
+          <button className="btn btn-primary mt-2" onClick={() => setShowInfoPopup(false)}>
+            Got it!
+          </button>
+        </div>
+      </div>
+    )}
     </div>
   );
 };

@@ -24,6 +24,9 @@ function ClosetScreen() {
 
   const filteredItems = likedItems.filter((item) => item.category === selectedType);
 
+  const [showInfoPopup, setShowInfoPopup] = useState(false);
+
+
   const handleItemClick = (itemId) => {
     setSelectedItemId((prev) => (prev === itemId ? null : itemId)); // toggle selection
   };
@@ -45,8 +48,16 @@ function ClosetScreen() {
           </Link>
         </div>
         <div className="col-1">
-          <img className="d-block mx-auto" src={questionicon} alt="Info" width="30" />
-        </div>
+  <img
+    className="d-block mx-auto"
+    src={questionicon}
+    alt="Info button"
+    width="30"
+    style={{ cursor: "pointer" }}
+    onClick={() => setShowInfoPopup(true)}
+  />
+</div>
+
         <div className="col-8">
           <p className="pageheader">Closet</p>
         </div>
@@ -145,6 +156,20 @@ function ClosetScreen() {
           </Link>
         </div>
       </div>
+      {showInfoPopup && (
+  <div className="info-popup-overlay" onClick={() => setShowInfoPopup(false)}>
+    <div className="info-popup" onClick={(e) => e.stopPropagation()}>
+      <h5>How to use Closet</h5>
+      <p>👕 Look at all clothes that you swiped right on </p>
+      <p>👖 Delete clothes you have changed your mind on </p>
+      <p>👟 make your outfit in Mix and Match</p>
+      <button className="btn btn-primary mt-2" onClick={() => setShowInfoPopup(false)}>
+        Got it!
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
